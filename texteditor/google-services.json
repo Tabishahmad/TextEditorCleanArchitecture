@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "529492368436",
+    "firebase_url": "https://scrapbooksb-e9ce0-default-rtdb.firebaseio.com",
+    "project_id": "scrapbooksb-e9ce0",
+    "storage_bucket": "scrapbooksb-e9ce0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529492368436:android:7804341fe7bae225fefe61",
+        "android_client_info": {
+          "package_name": "com.example.scraobook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529492368436-49vkkb36ljmnp8100k68qivvere5avmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9PMA4RvPjjf5ttxoLIPqedcOqusBQ-Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529492368436-49vkkb36ljmnp8100k68qivvere5avmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
