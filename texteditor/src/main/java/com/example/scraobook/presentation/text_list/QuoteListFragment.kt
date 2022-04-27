@@ -72,7 +72,7 @@ class QuoteListFragment : Fragment(),QuotesListAdapter.QuotesItemClickListener {
         }
     }
 
-    override fun onQuoteItemClick(v: View, quote: String, index: Int) {
-        
+    override fun onQuoteItemClick(clickedView: View, quote: String, index: Int,capturedView: View?) {
+        quoteListViewModel.onQuoteItemClick(clickedView,quote,index,capturedView)
     }
 }

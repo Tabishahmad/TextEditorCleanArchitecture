@@ -29,7 +29,7 @@ class QuotesRecyclerview : RecyclerView {
         adapter = QuotesListAdapter()
     }
 
-    private fun getMAdapter(): QuotesListAdapter {
+    public fun getMAdapter(): QuotesListAdapter {
         return adapter as QuotesListAdapter
     }
 

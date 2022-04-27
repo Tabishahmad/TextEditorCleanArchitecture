@@ -4,6 +4,8 @@ import com.example.scraobook.data.remote.FirebaseTextFetchApi
 import com.example.scraobook.data.repository.QuoteRepositoryImpl
 import com.example.scraobook.domain.repository.QuoteRepository
 import com.example.scraobook.domain.use_case.*
+import com.example.scraobook.util.CaptureScreen
+import com.example.scraobook.util.ShareFile
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,11 +20,20 @@ object HIltModules {
         return QuoteRepositoryImpl(firebaseTextFetchApi = FirebaseTextFetchApi())
     }
     @Provides
+    fun provideCaptureScreen(): CaptureScreen{
+        return CaptureScreen()
+    }
+    @Provides
+    fun provideShareFile(): ShareFile{
+        return ShareFile()
+    }
+    @Provides
     @Singleton
-    fun provideQuotesUseCases(repository: QuoteRepository): QuoteListUseCases {
+    fun provideQuotesUseCases(repository: QuoteRepository,
+                              captureScreen: CaptureScreen,shareFile: ShareFile): QuoteListUseCases {
         return QuoteListUseCases(
             getQuotes = GetQuotes(repository),
-            downloadQuote = DownloadQuote(),
+            downloadQuote = DownloadQuote(captureScreen,shareFile),
             shareQuotes = ShareQuotes(),
             shareQuotesOnWhatsApp = ShareQuotesOnWhatsApp()
         )

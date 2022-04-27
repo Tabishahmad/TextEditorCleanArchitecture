@@ -1,7 +1,9 @@
 package com.example.scraobook.presentation.text_list
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.scraobook.R
 import com.example.scraobook.domain.repository.QuoteRepository
 import com.example.scraobook.domain.use_case.QuoteListUseCases
 import com.example.scraobook.util.Resource
@@ -30,6 +32,14 @@ class QuoteListViewModel @Inject constructor(private val useCases: QuoteListUseC
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun onQuoteItemClick(clickedView: View, quote: String, index: Int,capturedView: View?){
+        when(clickedView.id){
+            R.id.download->{
+                useCases.downloadQuote(capturedView)
+            }
+        }
     }
 }
 

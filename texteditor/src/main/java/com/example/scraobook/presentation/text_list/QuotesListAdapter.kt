@@ -12,7 +12,7 @@ class QuotesListAdapter : RecyclerView.Adapter<QuotesListAdapter.MyHolder>() {
     private var inflater: LayoutInflater? = null
     private val list = ArrayList<String>()
     var fontTextSize : Float = 12.0F
-
+    private var rv: RecyclerView? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.context)
@@ -24,11 +24,13 @@ class QuotesListAdapter : RecyclerView.Adapter<QuotesListAdapter.MyHolder>() {
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.b.tv.textSize = fontTextSize
         holder.setData(list[position])
-        holder.b.card.setOnClickListener {
+        holder.b.download.setOnClickListener {
+            var capturedView = getTextView(position)
             listener?.onQuoteItemClick(
                 it,
                 list[position],
-                position
+                position,
+                capturedView
             )
         }
     }
@@ -50,7 +52,7 @@ class QuotesListAdapter : RecyclerView.Adapter<QuotesListAdapter.MyHolder>() {
     }
 
     interface QuotesItemClickListener {
-        fun onQuoteItemClick(v: View, quote: String, index: Int)
+        fun onQuoteItemClick(clickedView: View, quote: String, index: Int,capturedView: View?)
     }
     fun setMyTextSize(tsize: Float){
         fontTextSize = tsize
@@ -63,4 +65,16 @@ class QuotesListAdapter : RecyclerView.Adapter<QuotesListAdapter.MyHolder>() {
         notifyDataSetChanged()
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        rv = recyclerView
+    }
+    fun getTextView(index: Int): View? {
+        val viewHolder = rv?.findViewHolderForAdapterPosition(index)
+        viewHolder?.let {
+            val holder = it as MyHolder
+            return holder.b.card
+        }
+        return null
+    }
 }
