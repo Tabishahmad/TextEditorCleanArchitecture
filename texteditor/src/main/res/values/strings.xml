@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TextEditor</string>
+
+    <string name="add_text_btn_ttl">Text</string>
+    <string name="add_image_btn_ttl">Image</string>
+    <string name="add_frame_btn_ttl">Frame</string>
+    <string name="add_stickers_btn_ttl">Stickers</string>
+    <string name="add_quotes_btn_ttl">Quotes</string>
+
 </resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.scraobook.presentation.text_detail.QuoteDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.seletedQuoteText}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/right_curve_btn_bg"
+            android:text="Add Image"
+            android:onClick="@{(v) -> viewModel.changeBackgroundImage(v)}"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottoView"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_curve_btn_bg"
+            android:text="Background"
+            android:onClick="@{(v) -> viewModel.changeBackgroundColor(v)}"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottoView"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bottoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/share_bar_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:visibility="visible">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/chooseImage"
+                        style="@style/ControlPanel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="@{(v) -> viewModel.addText(v)}"
+                        android:background="?android:selectableItemBackground"
+                        android:drawableTop="@drawable/ic_addtext"
+                        android:text="@string/add_text_btn_ttl" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/btnShare"
+                        style="@style/ControlPanel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="@{(v) -> viewModel.addImage(v)}"
+                        android:background="?android:selectableItemBackground"
+                        android:drawableTop="@drawable/ic_image"
+                        android:text="@string/add_image_btn_ttl" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/addText"
+                        style="@style/ControlPanel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="@{(v) -> viewModel.addFrame(v)}"
+                        android:background="?android:selectableItemBackground"
+                        android:drawableTop="@drawable/ic_frame"
+                        android:text="@string/add_frame_btn_ttl" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/addStickers"
+                        style="@style/ControlPanel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{(v) -> viewModel.addSticker(v)}"
+                        android:layout_weight="1"
+                        android:background="?android:selectableItemBackground"
+                        android:drawableTop="@drawable/ic_sticker"
+                        android:text="@string/add_stickers_btn_ttl" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/download"
+                        style="@style/ControlPanel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="@{(v) -> viewModel.changeQuote(v)}"
+                        android:background="?android:selectableItemBackground"
+                        android:drawableTop="@drawable/ic_quotes"
+                        android:text="@string/add_quotes_btn_ttl" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

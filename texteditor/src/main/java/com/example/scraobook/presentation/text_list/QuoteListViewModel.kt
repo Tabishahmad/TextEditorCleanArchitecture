@@ -1,15 +1,15 @@
 package com.example.scraobook.presentation.text_list
 
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
 import com.example.scraobook.R
-import com.example.scraobook.domain.repository.QuoteRepository
-import com.example.scraobook.domain.use_case.QuoteListUseCases
+import com.example.scraobook.domain.use_case.quoteListUC.QuoteListUseCases
 import com.example.scraobook.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,11 +33,21 @@ class QuoteListViewModel @Inject constructor(private val useCases: QuoteListUseC
             }
         }.launchIn(viewModelScope)
     }
-
-    fun onQuoteItemClick(clickedView: View, quote: String, index: Int,capturedView: View?){
-        when(clickedView.id){
+    /*
+    view = view which is being clicked
+    capturedView = view which is captured for share and save
+    * */
+    fun onQuoteItemClick(view: View, quote: String, index: Int,capturedView: View?){
+        when(view.id){
             R.id.download->{
-                useCases.downloadQuote(capturedView)
+                useCases.saveQuote(capturedView) { result ->
+                    println("callBack " + result)
+                }
+            }
+            R.id.card->{
+                var bundle = Bundle()
+                bundle.putString("currentQuote",quote)
+                view.findNavController().navigate(R.id.action_quoteList_to_qupteDetail,bundle)
             }
         }
     }

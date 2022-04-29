@@ -3,8 +3,8 @@ package com.example.scraobook.hilt
 import com.example.scraobook.data.remote.FirebaseTextFetchApi
 import com.example.scraobook.data.repository.QuoteRepositoryImpl
 import com.example.scraobook.domain.repository.QuoteRepository
-import com.example.scraobook.domain.use_case.*
-import com.example.scraobook.util.CaptureScreen
+import com.example.scraobook.domain.use_case.quoteDetailsUC.*
+import com.example.scraobook.domain.use_case.quoteListUC.*
 import com.example.scraobook.util.ShareFile
 import dagger.Module
 import dagger.Provides
@@ -20,22 +20,31 @@ object HIltModules {
         return QuoteRepositoryImpl(firebaseTextFetchApi = FirebaseTextFetchApi())
     }
     @Provides
-    fun provideCaptureScreen(): CaptureScreen{
-        return CaptureScreen()
-    }
-    @Provides
+    @Singleton
     fun provideShareFile(): ShareFile{
         return ShareFile()
     }
     @Provides
     @Singleton
-    fun provideQuotesUseCases(repository: QuoteRepository,
-                              captureScreen: CaptureScreen,shareFile: ShareFile): QuoteListUseCases {
+    fun provideQuotesUseCases(repository: QuoteRepository,shareFile: ShareFile): QuoteListUseCases {
         return QuoteListUseCases(
             getQuotes = GetQuotes(repository),
-            downloadQuote = DownloadQuote(captureScreen,shareFile),
+            saveQuote = SaveQuote(shareFile),
             shareQuotes = ShareQuotes(),
             shareQuotesOnWhatsApp = ShareQuotesOnWhatsApp()
+        )
+    }
+    @Provides
+    @Singleton
+    fun provideQuoteDetailsUseCases(): QuoteDetailsUseCases {
+        return QuoteDetailsUseCases(
+            addText = AddText(),
+            addImage = AddImage(),
+            addFrame = AddFrame(),
+            addSticker = AddSticker(),
+            changeQuote = ChangeQuote(),
+            changeBackgroundColor = ChangeBackgroundColor(),
+            changeBackgroundImage = ChangeBackgroundImage()
         )
     }
 }

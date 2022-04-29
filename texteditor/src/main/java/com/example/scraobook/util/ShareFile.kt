@@ -11,7 +11,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 class ShareFile {
-    fun bitmapToFile(context: Context, bitmap: Bitmap?) {
+    fun bitmapToFile(context: Context, bitmap: Bitmap?):Boolean {
         try {
             val file = File(context.externalCacheDir, "share.png")
             val fOut = FileOutputStream(file)
@@ -20,29 +20,27 @@ class ShareFile {
             fOut.close()
             file.setReadable(true, false)
             shareImage(context, getProviderUri(context, file))
+            return true
         } catch (e: Exception) {
             e.printStackTrace()
+            return false
         }
     }
     private fun shareImage(context: Context, uri: Uri?) {
-        try {
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            var sAux = """
-            Download ${context.getString(R.string.app_name)}
-            
-            """.trimIndent()
-            sAux = """
-            ${sAux}https://play.google.com/store/apps/details?id=${context.packageName}
-            
-            """.trimIndent()
-            intent.putExtra(Intent.EXTRA_TEXT, sAux)
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            intent.type = "image/png"
-            context.startActivity(Intent.createChooser(intent, "Share image via"))
-        } catch (e: java.lang.Exception) {
-            e.printStackTrace()
-        }
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        var sAux = """
+        Download ${context.getString(R.string.app_name)}
+        
+        """.trimIndent()
+        sAux = """
+        ${sAux}https://play.google.com/store/apps/details?id=${context.packageName}
+        
+        """.trimIndent()
+        intent.putExtra(Intent.EXTRA_TEXT, sAux)
+        intent.putExtra(Intent.EXTRA_STREAM, uri)
+        intent.type = "image/png"
+        context.startActivity(Intent.createChooser(intent, "Share image via"))
     }
     private fun getProviderUri(ctx: Context?, file: File): Uri? {
         val filePath = file.absoluteFile

@@ -26,12 +26,10 @@ class QuotesListAdapter : RecyclerView.Adapter<QuotesListAdapter.MyHolder>() {
         holder.setData(list[position])
         holder.b.download.setOnClickListener {
             var capturedView = getTextView(position)
-            listener?.onQuoteItemClick(
-                it,
-                list[position],
-                position,
-                capturedView
-            )
+            listener?.onQuoteItemClick(it,list[position],position,capturedView)
+        }
+        holder.b.card.setOnClickListener {
+            listener?.onQuoteItemClick(it,list[position],position,null)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.scraobook.domain.use_case
+package com.example.scraobook.domain.use_case.quoteListUC
 
 import com.example.scraobook.domain.repository.QuoteRepository
 import com.example.scraobook.presentation.text_list.QuoteListState
