@@ -20,7 +20,7 @@ class QuoteDetailViewModel @Inject constructor(private val useCases: QuoteDetail
     }
 
     fun addText(view: View){
-        println("function click")
+        useCases.addText(view.context)
     }
     fun addImage(view: View){
         println("function click")
@@ -29,7 +29,7 @@ class QuoteDetailViewModel @Inject constructor(private val useCases: QuoteDetail
         println("function click")
     }
     fun addSticker(view: View){
-        println("function click")
+        useCases.addSticker(view.context)
     }
     fun changeQuote(view: View){
         println("function click")
@@ -40,4 +40,5 @@ class QuoteDetailViewModel @Inject constructor(private val useCases: QuoteDetail
     fun changeBackgroundImage(view: View){
         println("function click")
     }
+
 }

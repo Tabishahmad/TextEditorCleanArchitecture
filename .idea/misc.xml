@@ -3,13 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/drawable/dialog_bg.xml" value="0.13" />
         <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/drawable/ic_image.xml" value="0.13" />
         <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/drawable/left_curve_btn_bg.xml" value="0.13" />
         <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/drawable/right_curve_btn_bg.xml" value="0.13" />
+        <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/drawable/textbg.xml" value="0.13" />
+        <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/add_text.xml" value="0.1734375" />
+        <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/font_dialog_layout.xml" value="0.1734375" />
         <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/main_activity.xml" value="0.1734375" />
         <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/quote_detail_fragment.xml" value="0.25" />
         <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/quote_list_fragment.xml" value="0.1734375" />
         <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/quotes_list_adapter.xml" value="0.1734375" />
+        <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/show_stickers.xml" value="0.1734375" />
+        <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/spinner_row.xml" value="0.1734375" />
+        <entry key="..\:/Experiments/TextEditorCleanArchitecture/texteditor/src/main/res/layout/sticker_row.xml" value="0.1734375" />
       </map>
     </option>
   </component>

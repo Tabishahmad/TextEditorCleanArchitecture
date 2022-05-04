@@ -10,4 +10,6 @@
 
     <color name="quotes_txt_color">#000000</color>
     <color name="share_bar_color">#000000</color>
+    <color name="colorPrimaryDark">#B1004B</color>
+    <color name="colorOrange">#efac2b</color>
 </resources>
