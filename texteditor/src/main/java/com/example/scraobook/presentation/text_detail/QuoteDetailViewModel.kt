@@ -2,6 +2,8 @@ package com.example.scraobook.presentation.text_detail
 
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.scraobook.domain.use_case.quoteDetailsUC.QuoteDetailsUseCases
 import com.example.scraobook.domain.use_case.quoteListUC.QuoteListUseCases
@@ -15,12 +17,16 @@ class QuoteDetailViewModel @Inject constructor(private val useCases: QuoteDetail
     private val _seletedQuoteText = MutableStateFlow("This is default text")
     val seletedQuoteText: StateFlow<String> = _seletedQuoteText
 
+    val _newAddedText = MutableLiveData<String>()
+
     fun updateSeletedQuotedText(currentQuote: String){
         _seletedQuoteText.value = currentQuote
     }
 
     fun addText(view: View){
-        useCases.addText(view.context)
+        useCases.addText(view.context){it->
+            _newAddedText.value = it
+        }
     }
     fun addImage(view: View){
         println("function click")

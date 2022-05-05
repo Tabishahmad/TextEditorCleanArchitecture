@@ -62,36 +62,6 @@ class AddSticker @Inject constructor(private val stickerFrameRepository: Sticker
                 }
             }
         }
-
-//        quoteDetailViewModel.getAllImage().observe(this) { jsonString ->
-//            println(" value is $jsonString")
-//            if (jsonString != null) {
-//                val stickerList: ArrayList<String> =
-//                    UtilFunctions.getList(jsonString, "sticker")
-//                if (stickerList != null) {
-//                    val listener: RecyclerViewClickListener = object : RecyclerViewClickListener() {
-//                        fun onClick(view: View?, position: Int) {
-//                            if (addStickers.getText().toString()
-//                                    .equals(
-//                                        getString(R.string.add_stickers_btn_ttl),
-//                                        ignoreCase = true
-//                                    )
-//                            ) {
-//                                addStickers.setText(getString(R.string.remove_stickers_btn_ttl))
-//                                UtilFunctions.setImage(
-//                                    sticker,
-//                                    stickerList[position],
-//                                    R.drawable.loading_img,
-//                                    R.drawable.error_img
-//                                )
-//                            }
-//                            dialog.dismiss()
-//                        }
-//                    }
-//                    stickersRv.adapter = StickersAdapter(stickerList, listener)
-//                }
-//            }
-//        }
         dialog.show()
     }
 }

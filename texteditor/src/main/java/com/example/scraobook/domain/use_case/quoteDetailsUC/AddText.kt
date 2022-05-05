@@ -19,10 +19,12 @@ import com.google.android.material.textfield.TextInputEditText
 class AddText {
     private val fonts =
         arrayOf("1.ttf", "2.ttf", "3.ttf", "4.ttf", "5.ttf", "6.ttf", "7.ttf", "8.ttf")
-    operator fun invoke(context: Context){
-        addTextDialog(context,true)
+    operator fun invoke(context: Context,callback:(result:String)->Unit){
+        addTextDialog(context,true){addedText->
+            callback(addedText)
+        }
     }
-    private fun addTextDialog(context: Context, isCancelable: Boolean) {
+    private fun addTextDialog(context: Context, isCancelable: Boolean,callback:(result:String)->Unit) {
         val dialog = Dialog(context, R.style.Theme_Dialog)
         dialog.setCancelable(isCancelable)
         dialog.setCanceledOnTouchOutside(isCancelable)
@@ -42,8 +44,8 @@ class AddText {
             )
         }
         dialog.findViewById<View>(R.id.btnAdd).setOnClickListener { v: View? ->
-
             dialog.dismiss()
+            callback(etInput.text.toString())
         }
         dialog.findViewById<View>(R.id.btnCancel)
             .setOnClickListener { v: View? -> dialog.dismiss() }

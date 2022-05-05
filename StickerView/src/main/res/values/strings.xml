@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StickerDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_display">DisplayActivity</string>
+    <string name="action_complete">Finish</string>
+    <string name="double_click_input_text">Double click to enter text</string>
+    <string name="add_sticker">Add stickers</string>
+    <string name="add_bubble">Add bubbles</string>
+    <string name="complete">Finish</string>
+    <string name="publish_comment">Say something……</string>
+    <string name="over_text_limit">You have exceeded the word limit</string>
+</resources>
