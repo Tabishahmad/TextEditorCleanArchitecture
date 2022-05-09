@@ -28,16 +28,16 @@ class QuoteDetailFragment : Fragment() {
 //        mTv_text?.gravity = Gravity.CENTER
 //        mTv_text?.setOnTouchListener(Onto)
 
-        quoteDetailViewModel._newAddedText.observe(requireActivity(), {it->
-            val tv_sticker = BubbleTextView(requireContext(),Color.WHITE,0)
-            tv_sticker.setImageResource(R.mipmap.bubble_7_rb)
-            val lp = RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-            )
-            tv_sticker.setText(it)
-            b.container.addView(tv_sticker,lp)
-        })
+//        quoteDetailViewModel._newAddedText.observe(requireActivity(), {it->
+//            val tv_sticker = BubbleTextView(requireContext(),Color.WHITE,0)
+//            tv_sticker.setImageResource(R.mipmap.bubble_7_rb)
+//            val lp = RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.MATCH_PARENT,
+//                RelativeLayout.LayoutParams.MATCH_PARENT
+//            )
+//            tv_sticker.setText(it)
+//            b.container.addView(tv_sticker,lp)
+//        })
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +45,7 @@ class QuoteDetailFragment : Fragment() {
     ): View? {
         b = QuoteDetailFragmentBinding.inflate(inflater, container, false)
         b.viewModel = quoteDetailViewModel
-
+        quoteDetailViewModel.setContainer(b.container)
         return b.root
     }
 

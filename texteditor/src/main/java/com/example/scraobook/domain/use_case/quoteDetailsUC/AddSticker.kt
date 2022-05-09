@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.Window
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scraobook.R
@@ -26,10 +27,12 @@ import javax.inject.Inject
 
 class AddSticker @Inject constructor(private val stickerFrameRepository: StickerFrameRepository) {
 
-    operator fun invoke(context: Context){
-        showStickersDialog(context,true)
+    operator fun invoke(context: Context,callback:(result:String)->Unit){
+        showStickersDialog(context,true){selectedURL->
+            callback(selectedURL)
+        }
     }
-    private fun showStickersDialog(context: Context, isCancelable: Boolean) {
+    private fun showStickersDialog(context: Context, isCancelable: Boolean,callback:(result:String)->Unit) {
         val dialog = Dialog(context, R.style.Theme_Dialog)
         dialog.setCancelable(isCancelable)
         dialog.setCanceledOnTouchOutside(isCancelable)
@@ -51,7 +54,8 @@ class AddSticker @Inject constructor(private val stickerFrameRepository: Sticker
             if(domainData != null){
                 val listener : RecyclerViewClickListener = object : RecyclerViewClickListener{
                     override fun onClick(view: View?, position: Int) {
-
+                        var selectedStickerURL = domainData.sticker.get(position)
+                        callback(selectedStickerURL)
                     }
                 }
                 withContext(Dispatchers.Main) {
