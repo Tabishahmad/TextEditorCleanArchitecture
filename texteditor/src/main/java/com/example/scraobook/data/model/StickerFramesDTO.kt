@@ -9,6 +9,15 @@ data class StickerFramesDTO(
     val sticker: List<String>,
     val ver: Int
 )
-fun StickerFramesDTO.toDomainSticker(): Sticker{
-    return Sticker(sticker)
+fun StickerFramesDTO.toDomainSticker(): ArrayList<String>{
+    return ArrayList(sticker)
+}
+fun StickerFramesDTO.toDomainFrame(): ArrayList<String>{
+    return ArrayList(frame)
+}
+fun StickerFramesDTO.toDomainBGTexture(): ArrayList<String>{
+    return ArrayList(frame)
+}
+fun StickerFramesDTO.toDomainMessage(): ArrayList<String>{
+    return ArrayList(Message)
 }

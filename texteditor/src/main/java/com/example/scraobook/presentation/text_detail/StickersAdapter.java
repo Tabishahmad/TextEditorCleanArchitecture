@@ -19,7 +19,8 @@ public class StickersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private RecyclerViewClickListener mListener;
     private ArrayList<String> list;
 
-    public StickersAdapter(ArrayList<String> list, RecyclerViewClickListener mListener) {
+    public StickersAdapter(ArrayList<String> list,
+                           RecyclerViewClickListener mListener) {
         this.list = list;
         this.mListener = mListener;
     }
@@ -33,7 +34,6 @@ public class StickersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
-//        UtilFunctions.setImage(myViewHolder.imageView, list.get(position), R.drawable.loading_img, R.drawable.error_img);
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.loading_img);

@@ -8,14 +8,21 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.MotionEventCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.abner.stickerdemo.R;
 import com.example.abner.stickerdemo.model.StickerPropertyModel;
 
@@ -93,21 +100,26 @@ public class StickerView extends ImageView {
     //水平镜像
     private boolean isHorizonMirror = false;
 
+    private Context context;
+
     public StickerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         stickerId = 0;
+        this.context = context;
         init();
     }
 
     public StickerView(Context context) {
         super(context);
         stickerId = 0;
+        this.context = context;
         init();
     }
 
     public StickerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         stickerId = 0;
+        this.context = context;
         init();
     }
 
@@ -183,7 +195,21 @@ public class StickerView extends ImageView {
             canvas.restore();
         }
     }
+    @Override
+    public void setImageURI(Uri uri){
+        Glide.with(context).asBitmap().load(uri).into(new CustomTarget<Bitmap>(400,400) {
+            @Override
+            public void onResourceReady(@NonNull Bitmap resource,
+                                        @Nullable Transition<? super Bitmap> transition) {
+                setBitmap(resource);
+            }
 
+            @Override
+            public void onLoadCleared(@Nullable Drawable placeholder) {
+
+            }
+        });
+    }
     @Override
     public void setImageResource(int resId) {
         setBitmap(BitmapFactory.decodeResource(getResources(), resId));

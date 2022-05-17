@@ -12,11 +12,13 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.EditText
 import android.widget.ListView
 import com.example.scraobook.R
+import com.example.scraobook.presentation.text_detail.ColorPicker
 import com.example.scraobook.presentation.text_detail.FontSpinnerAdapter
 import com.example.scraobook.util.ColorPickerDialog
 import com.google.android.material.textfield.TextInputEditText
+import javax.inject.Inject
 
-class AddText {
+class AddText @Inject constructor(private val colorPicker: ColorPicker){
     private val fonts =
         arrayOf("1.ttf", "2.ttf", "3.ttf", "4.ttf", "5.ttf", "6.ttf", "7.ttf", "8.ttf")
     operator fun invoke(context: Context,callback:(result:String)->Unit){
@@ -39,9 +41,9 @@ class AddText {
             )
         }
         dialog.findViewById<View>(R.id.ivColor).setOnClickListener { v: View? ->
-            showColorPickerDialogDemo(
-                etInput
-            )
+            colorPicker.showColorPickerDialog(context){
+                etInput.setTextColor(it)
+            }
         }
         dialog.findViewById<View>(R.id.btnAdd).setOnClickListener { v: View? ->
             dialog.dismiss()
@@ -71,14 +73,13 @@ class AddText {
         dialog.show()
     }
 
-    private fun showColorPickerDialogDemo(editText: EditText) {
-        val colorPickerDialog = ColorPickerDialog(editText.context,
-            R.color.colorOrange, object : ColorPickerDialog.OnColorSelectedListener{
-                override fun onColorSelected(color: Int) {
-                    editText.setTextColor(color)
-//                    mTv_text.setTextColor(color)
-                }
-            })
-        colorPickerDialog.show()
-    }
+//    private fun showColorPickerDialog(editText: EditText) {
+//        val colorPickerDialog = ColorPickerDialog(editText.context,
+//            R.color.colorOrange, object : ColorPickerDialog.OnColorSelectedListener{
+//                override fun onColorSelected(color: Int) {
+//                    editText.setTextColor(color)
+//                }
+//            })
+//        colorPickerDialog.show()
+//    }
 }

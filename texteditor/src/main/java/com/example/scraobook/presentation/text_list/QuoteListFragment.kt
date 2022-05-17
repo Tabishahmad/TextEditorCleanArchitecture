@@ -1,23 +1,21 @@
 package com.example.scraobook.presentation.text_list
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.example.scraobook.databinding.QuoteListFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import androidx.fragment.app.viewModels
-import com.example.scraobook.databinding.QuoteListFragmentBinding
-import java.util.ArrayList
 
 @AndroidEntryPoint
 class QuoteListFragment : Fragment(),QuotesListAdapter.QuotesItemClickListener {
 
     private val quoteListViewModel: QuoteListViewModel by viewModels()
+
     private lateinit var b: QuoteListFragmentBinding
     private var catName: String? = null
     companion object{
@@ -28,6 +26,7 @@ class QuoteListFragment : Fragment(),QuotesListAdapter.QuotesItemClickListener {
         arguments?.let {
             catName = it.getString("name")
         }
+
     }
 
     override fun onCreateView(
@@ -75,4 +74,6 @@ class QuoteListFragment : Fragment(),QuotesListAdapter.QuotesItemClickListener {
     override fun onQuoteItemClick(clickedView: View, quote: String, index: Int,capturedView: View?) {
         quoteListViewModel.onQuoteItemClick(clickedView,quote,index,capturedView)
     }
+
+
 }
